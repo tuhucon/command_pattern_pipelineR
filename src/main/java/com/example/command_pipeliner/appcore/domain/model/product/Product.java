@@ -1,4 +1,4 @@
-package com.example.command_pipeliner.appcore.domain.model;
+package com.example.command_pipeliner.appcore.domain.model.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

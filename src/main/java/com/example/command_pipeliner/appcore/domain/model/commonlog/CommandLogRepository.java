@@ -1,5 +1,6 @@
-package com.example.command_pipeliner.appcore.domain.model;
+package com.example.command_pipeliner.appcore.domain.model.commonlog;
 
+import com.example.command_pipeliner.appcore.domain.model.commonlog.CommandLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,8 +1,8 @@
-package com.example.command_pipeliner.appcore.appservice;
+package com.example.command_pipeliner.appcore.appservice.product;
 
 import an.awesome.pipelinr.Command;
-import com.example.command_pipeliner.appcore.domain.model.Product;
-import com.example.command_pipeliner.appcore.domain.model.ProductRepository;
+import com.example.command_pipeliner.appcore.domain.model.product.Product;
+import com.example.command_pipeliner.appcore.domain.model.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

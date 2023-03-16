@@ -1,24 +1,24 @@
-package com.example.command_pipeliner.appcore.appservice;
+package com.example.command_pipeliner.appcore.appservice.product;
 
 import an.awesome.pipelinr.Command;
-import com.example.command_pipeliner.appcore.domain.model.Product;
-import com.example.command_pipeliner.appcore.domain.model.ProductRepository;
+import com.example.command_pipeliner.appcore.domain.model.product.Product;
+import com.example.command_pipeliner.appcore.domain.model.product.ProductRepository;
 import com.example.command_pipeliner.common.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UpdateProductStockCommandHandler implements Command.Handler<UpdateProductStockCommand, Product> {
+public class UpdateProductPriceCommandHandler implements Command.Handler<UpdateProductPriceCommand, Product> {
 
     private final ProductRepository productRepository;
 
     @Override
-    public Product handle(UpdateProductStockCommand command) {
+    public Product handle(UpdateProductPriceCommand command) {
         Product product = productRepository.findById(command.getId())
                 .orElseThrow(ObjectNotFoundException::new);
 
-        product.setStock(command.getStock());
+        product.setPrice(command.getPrice());
 
         productRepository.save(product);
 

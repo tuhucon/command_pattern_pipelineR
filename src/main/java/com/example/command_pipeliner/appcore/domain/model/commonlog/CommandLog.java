@@ -1,4 +1,4 @@
-package com.example.command_pipeliner.appcore.domain.model;
+package com.example.command_pipeliner.appcore.domain.model.commonlog;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,6 +16,7 @@ public class CommandLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    //commandID and commandType is unique
     String commandId;
 
     String request;

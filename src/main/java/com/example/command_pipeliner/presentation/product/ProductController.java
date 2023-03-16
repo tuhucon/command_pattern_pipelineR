@@ -1,17 +1,14 @@
-package com.example.command_pipeliner.presentation;
+package com.example.command_pipeliner.presentation.product;
 
 import an.awesome.pipelinr.Pipeline;
-import com.example.command_pipeliner.appcore.appservice.CreateProductCommand;
-import com.example.command_pipeliner.appcore.appservice.UpdateProductPriceCommand;
-import com.example.command_pipeliner.appcore.appservice.UpdateProductStockCommand;
-import com.example.command_pipeliner.appcore.domain.model.Product;
+import com.example.command_pipeliner.appcore.appservice.product.CreateProductCommand;
+import com.example.command_pipeliner.appcore.appservice.product.UpdateProductPriceCommand;
+import com.example.command_pipeliner.appcore.appservice.product.UpdateProductStockCommand;
+import com.example.command_pipeliner.appcore.domain.model.product.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.rmi.server.UID;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor

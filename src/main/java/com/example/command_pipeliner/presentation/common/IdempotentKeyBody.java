@@ -1,4 +1,4 @@
-package com.example.command_pipeliner.presentation;
+package com.example.command_pipeliner.presentation.common;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package com.example.command_pipeliner.appcore.appservice;
+package com.example.command_pipeliner.appcore.appservice.product;
 
-import com.example.command_pipeliner.appcore.domain.model.Product;
+import com.example.command_pipeliner.appcore.domain.model.product.Product;
 import com.example.command_pipeliner.common.IdempotentCommand;
 import lombok.Getter;
 import lombok.Setter;

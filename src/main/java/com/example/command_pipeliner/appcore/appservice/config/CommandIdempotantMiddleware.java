@@ -1,9 +1,9 @@
 package com.example.command_pipeliner.appcore.appservice.config;
 
 import an.awesome.pipelinr.Command;
-import com.example.command_pipeliner.appcore.domain.model.CommandLog;
-import com.example.command_pipeliner.appcore.domain.model.CommandLogRepository;
-import com.example.command_pipeliner.appcore.domain.model.CommandStatus;
+import com.example.command_pipeliner.appcore.domain.model.commonlog.CommandLog;
+import com.example.command_pipeliner.appcore.domain.model.commonlog.CommandLogRepository;
+import com.example.command_pipeliner.appcore.domain.model.commonlog.CommandStatus;
 import com.example.command_pipeliner.common.IdempotentCommand;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +42,7 @@ public class CommandIdempotantMiddleware implements Command.Middleware {
 
             while (commandLog.getStatus() == CommandStatus.DOING && retry < 3) {
                 Thread.sleep(5_000L);
-                commandLog = commandLogRepository.findByCommandId(commandId).get();
+                commandLog = commandLogRepository.findByCommandIdAndCommandType(commandId, cmd.getCommandType()).get();
                 retry++;
             }
 
