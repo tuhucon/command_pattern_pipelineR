@@ -6,6 +6,5 @@ import lombok.Data;
 @Data
 public class UpdateProductStockBody extends IdempotentKeyBody {
 
-    private Long id;
     private Integer stock;
 }

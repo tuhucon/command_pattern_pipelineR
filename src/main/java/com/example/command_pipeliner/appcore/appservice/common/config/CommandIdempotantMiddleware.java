@@ -1,10 +1,10 @@
-package com.example.command_pipeliner.appcore.appservice.config;
+package com.example.command_pipeliner.appcore.appservice.common.config;
 
 import an.awesome.pipelinr.Command;
 import com.example.command_pipeliner.appcore.domain.model.commonlog.CommandLog;
 import com.example.command_pipeliner.appcore.domain.model.commonlog.CommandLogRepository;
 import com.example.command_pipeliner.appcore.domain.model.commonlog.CommandStatus;
-import com.example.command_pipeliner.common.IdempotentCommand;
+import com.example.command_pipeliner.appcore.appservice.common.IdempotentCommand;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -33,7 +33,7 @@ public class CommandIdempotantMiddleware implements Command.Middleware {
         Optional<CommandLog> commandLogOpt = commandLogRepository.findByCommandIdAndCommandType(commandId, cmd.getCommandType());
 
         if (commandLogOpt.isEmpty()) {
-            commandLogRepository.creteNewCommandLog(commandId, objectMapper.writeValueAsString(c), CommandStatus.DOING.name(), cmd.getClass().getName(), cmd.getCommandType());
+            commandLogRepository.creteNewCommandLog(commandId, objectMapper.writeValueAsString(c), CommandStatus.DOING.name(), cmd.getCommandClassName(), cmd.getCommandType());
             response = next.invoke();
             commandLogRepository.updateResponseAndStatusByCommandId(objectMapper.writeValueAsString(response), CommandStatus.OK.name(), response.getClass().getName(), commandId);
         } else {

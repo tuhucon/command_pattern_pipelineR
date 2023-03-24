@@ -8,6 +8,7 @@ import com.example.command_pipeliner.appcore.domain.model.product.Product;
 import com.example.command_pipeliner.appcore.domain.model.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,22 +36,22 @@ public class ProductController {
         return product;
     }
 
-    @PostMapping("/products/updatePrice")
-    public Product updateProductPrice(@RequestBody UpdateProductPriceBody body) {
+    @PostMapping("/products/{productId}/updatePrice")
+    public Product updateProductPrice(@PathVariable Long productId, @RequestBody UpdateProductPriceBody body) {
         UpdateProductPriceCommand command = new UpdateProductPriceCommand(body.getIdempotentKey());
 
-        command.setId(body.getId());
+        command.setId(productId);
         command.setPrice(body.getPrice());
 
         Product product = command.execute(pipeline);
         return product;
     }
 
-    @PostMapping("/products/updateStock")
-    public Product updateProductStock(@RequestBody UpdateProductStockBody body) {
+    @PostMapping("/products/{productId}/updateStock")
+    public Product updateProductStock(@PathVariable Long productId, @RequestBody UpdateProductStockBody body) {
         UpdateProductStockCommand command = new UpdateProductStockCommand(body.getIdempotentKey());
 
-        command.setId(body.getId());
+        command.setId(productId);
         command.setStock(body.getStock());
 
         Product product = command.execute(pipeline);

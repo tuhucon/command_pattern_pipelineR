@@ -6,24 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateOrderEvent extends DomainEvent {
-
-    @Data
-    @NoArgsConstructor
-    public static class OrderItem {
-
-        Long productId;
-        Integer count;
-        PrecisionMoney amount;
-    }
-
-    Long userId;
+public class UpdateOrderDiscountEvent extends DomainEvent {
     PrecisionMoney discount;
-    PrecisionMoney paidAmount;
-    List<OrderItem> orderItems;
 }

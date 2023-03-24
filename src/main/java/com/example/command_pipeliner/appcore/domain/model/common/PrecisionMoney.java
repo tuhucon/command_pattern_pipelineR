@@ -1,12 +1,18 @@
 package com.example.command_pipeliner.appcore.domain.model.common;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
+@NoArgsConstructor
+@Data
 public class PrecisionMoney implements Comparable<PrecisionMoney>{
 
-    public static PrecisionMoney ZERO = new PrecisionMoney("0.0");
+    public static PrecisionMoney ZERO = new PrecisionMoney("0.0000000000");
 
     BigDecimal value;
 

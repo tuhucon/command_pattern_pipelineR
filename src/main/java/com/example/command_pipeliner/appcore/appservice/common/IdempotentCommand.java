@@ -1,6 +1,5 @@
-package com.example.command_pipeliner.common;
+package com.example.command_pipeliner.appcore.appservice.common;
 
-import an.awesome.pipelinr.Command;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
