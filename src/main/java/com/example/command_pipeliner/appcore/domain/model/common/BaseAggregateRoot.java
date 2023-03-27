@@ -28,7 +28,9 @@ public abstract class BaseAggregateRoot {
         events.add(event);
     }
 
-    abstract protected void apply(DomainEvent event);
+    protected void apply(DomainEvent event) {
+        ApplyEventResolver.applyEvent(this, event);
+    }
 
     protected void handle(DomainEvent event) {
         apply(event);
