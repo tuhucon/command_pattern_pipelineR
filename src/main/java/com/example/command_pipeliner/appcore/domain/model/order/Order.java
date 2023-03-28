@@ -55,6 +55,24 @@ public class Order extends BaseAggregateRoot {
         }
     }
 
+    @Override
+    protected SnapshotOrderEvent generateSnapshotEvent() {
+        SnapshotOrderEvent snapshotEvent = new SnapshotOrderEvent();
+        snapshotEvent.setDiscount(this.getDiscount());
+        snapshotEvent.setPaidAmount(this.getPaidAmount());
+        snapshotEvent.setUserId(this.getUserId());
+        List<CreateOrderEvent.OrderItem> orderItems = new ArrayList<>();
+        for (OrderItem item: this.getOrderItems()) {
+            CreateOrderEvent.OrderItem newItem = new CreateOrderEvent.OrderItem();
+            newItem.setCount(item.getCount());
+            newItem.setAmount(item.getAmount());
+            newItem.setProductId(item.getProductId());
+            orderItems.add(newItem);
+        }
+        snapshotEvent.setOrderItems(orderItems);
+        return snapshotEvent;
+    }
+
     @ApplyEvent(eventType = CreateOrderEvent.class)
     private void applyCreateOrderEvent(CreateOrderEvent event) {
         userId = event.getUserId();
@@ -75,6 +93,11 @@ public class Order extends BaseAggregateRoot {
     @ApplyEvent(eventType = UpdateOrderDiscountEvent.class)
     private void applyUpdateOrderDiscountEvent(UpdateOrderDiscountEvent event) {
         discount = event.getDiscount();
+    }
+
+    @ApplyEvent(eventType = SnapshotOrderEvent.class)
+    private void applySnapshotOrderEvent(SnapshotOrderEvent event) {
+        applyCreateOrderEvent(event);
     }
 
     private void addOrderItem(OrderItem orderItem) {

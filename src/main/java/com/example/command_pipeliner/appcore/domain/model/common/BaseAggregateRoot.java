@@ -36,6 +36,16 @@ public abstract class BaseAggregateRoot {
         apply(event);
         validate();
         addEvent(event);
+        if (event.getVersion() % 10 == 0) {
+            DomainEvent snapshotEvent = generateSnapshotEvent();
+            if (snapshotEvent != null) {
+                addEvent(snapshotEvent);
+            }
+        }
+    }
+
+    protected <R extends DomainEvent> R generateSnapshotEvent() {
+        return null;
     }
 
     protected void init() {
