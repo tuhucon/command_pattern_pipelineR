@@ -16,12 +16,12 @@ public class PrecisionMoney implements Comparable<PrecisionMoney>{
 
     BigDecimal value;
 
-    public PrecisionMoney(String money) {
-        this.value = new BigDecimal(money, new MathContext(10, RoundingMode.HALF_UP));
+    public PrecisionMoney(BigDecimal money) {
+        this(money.toString());
     }
 
-    private PrecisionMoney(BigDecimal money) {
-        this(money.toString());
+    public PrecisionMoney(String money) {
+        this.value = new BigDecimal(money, new MathContext(10, RoundingMode.HALF_UP));
     }
 
     public PrecisionMoney add(PrecisionMoney money) {
@@ -58,8 +58,8 @@ public class PrecisionMoney implements Comparable<PrecisionMoney>{
 
     @Override
     public int compareTo(PrecisionMoney o) {
-        if (o == null) {
-            throw new RuntimeException("Cannot compare with null value");
+        if (o == null || o.getClass() != PrecisionMoney.class) {
+            throw new RuntimeException("Cannot compare with null value or different class");
         }
         return value.compareTo(o.value);
     }
